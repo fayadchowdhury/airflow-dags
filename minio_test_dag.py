@@ -1,6 +1,6 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from airflow.utils.dates import days_ago
+from datetime import datetime, timedelta
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 
 def upload_to_minio():
@@ -19,7 +19,7 @@ def upload_to_minio():
 
 with DAG(
     dag_id="minio_test_dag",
-    start_date=days_ago(1),
+    start_date=datetime(2021, 1, 1, 0),
     schedule=None,  # trigger manually
     catchup=False,
 ) as dag:
